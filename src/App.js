@@ -1,40 +1,37 @@
+import CategoriesList from './components/categories-list/categories-list.component.jsx';
+
 const App = () => {
 
   const categories = [
     {
       id: 1,
-      title: 'Sauces'
+      title: 'Sauces',
+      imageUrl: 'https://tangelocat.com/images/sauces-min.jpg'
     },
     {
       id: 2,
-      title: 'Ground Chili'
+      title: 'Ground Chili',
+      imageUrl: 'https://tangelocat.com/images/ground-chili-min.jpg'
     },
     {
       id: 3,
-      title: 'Fresh Chili'
+      title: 'Fresh Chili',
+      imageUrl: 'https://tangelocat.com/images/fresh-chili-min.jpg'
     },
     {
       id: 4,
-      title: 'Mild'
+      title: 'Mild',
+      imageUrl: 'https://tangelocat.com/images/mild-min.jpg'
     },
     {
       id: 5,
-      title: 'Hot'
+      title: 'Hot',
+      imageUrl: 'https://tangelocat.com/images/hot-min.jpg'
     }
   ];
-
+  
   return (
-    <div className='categories-container'>
-      {categories.map(({ id, title }) => 
-        (<div className='category-container'>
-            {/* <img /> */}
-            <div id={id} className='category-body-container'>
-              <h2>{title}</h2>
-              <p>Shop now</p>
-            </div>
-          </div>)
-      )}      
-    </div>
+    <CategoriesList categories={categories} />    
   );
 }
 
