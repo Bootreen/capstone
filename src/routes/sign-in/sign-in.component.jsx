@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 import { getRedirectResult } from 'firebase/auth';
 import {
   auth,  
   signInWithGoogleRedirect,
   createUserDocumentFromAuth
 } from '../../utils/firebase/firebase.utils.js'
+import SignUpForm from '../../components/sign-up/sign-up-form.component.jsx';
 
 const SignIn = () => {
   
@@ -19,10 +20,11 @@ const SignIn = () => {
   }, [])
 
   return (
-    <div>
+    <Fragment>
       <h1>Sign In Page</h1>      
       <button onClick={signInWithGoogleRedirect}>Sign in with Google</button>
-    </div>
+      <SignUpForm />
+    </Fragment>
   );
 };
 
