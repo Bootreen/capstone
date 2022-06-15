@@ -1,8 +1,11 @@
-import { Fragment, useState, useEffect } from "react";
+import { useState } from "react";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth
 } from "../../utils/firebase/firebase.utils.js";
+import FormInput from "../form-input/form-input.component.jsx";
+import Button from "../button/button.component.jsx";
+import './sign-up-form.styles.scss'
 
 const defaultFormFields = {
   displayName: '',
@@ -41,20 +44,53 @@ const SignUpForm = () => {
   };
 
   return (
-    <Fragment>
-      <h1>Sign up with email</h1>
+    <div className='sign-up-container'>
+      <h2>Don't have an account?</h2>
+      <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
-        <label>Display Name</label>
-        <input type='text' required onChange={handleChange} name='displayName' value={displayName} />
-        <label>Email</label>
-        <input type='email' required onChange={handleChange} name='email' value={email} />
-        <label>Password</label>
-        <input type='password' required onChange={handleChange} name='password' value={password} />
-        <label>Confirm Password</label>
-        <input type='password' required onChange={handleChange} name='confirmPassword' value={confirmPassword} />
-        <button type='Submit'>Sign Up</button>
+        <FormInput
+          inputGroupOptions={{
+            label: 'Display Name',
+            type: 'text',
+            onChange: handleChange,
+            name: 'displayName',
+            value: displayName,
+            required: true
+          }}
+        />
+        <FormInput
+          inputGroupOptions={{
+            label: 'Email',
+            type: 'email',
+            onChange: handleChange,
+            name: 'email',
+            value: email,
+            required: true
+          }}          
+        />
+        <FormInput
+          inputGroupOptions={{
+            label: 'Password',
+            type: 'password',
+            onChange: handleChange,
+            name: 'password',
+            value: password,
+            required: true
+          }}          
+        />
+        <FormInput
+          inputGroupOptions={{
+            label: 'Confirm Password',
+            type: 'password',
+            onChange: handleChange,
+            name: 'confirmPassword',
+            value: confirmPassword,
+            required: true
+          }}          
+        />
+        <Button type='Submit'>Sign Up</Button>
       </form>
-    </Fragment>
+    </div>
   )
 };
 
