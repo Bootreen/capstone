@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
+  auth,
   signInWithGoogleRedirect,
-  signInDefault
+  signInDefault,
+  createUserDocumentFromAuth
 } from '../../utils/firebase/firebase.utils.js';
+import { getRedirectResult } from "firebase/auth";
 import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 import './sign-in-form.styles.scss';
@@ -17,6 +20,16 @@ const SignInForm = () => {
   const { email, password } = formFields;
 
   const resetFormFields = () => setFormFields(defaultFormFields);
+
+  useEffect(() => {
+    const fetchDataAfterRedirect = async () => {
+      const response = await getRedirectResult(auth);
+      if (response) {
+        const userDocRef = await createUserDocumentFromAuth(response.user);
+      }
+    };
+    fetchDataAfterRedirect();
+  }, [])
 
   const handleSubmit = async (event) => {
     event.preventDefault();    

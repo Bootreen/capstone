@@ -28,10 +28,7 @@ provider.setCustomParameters({
 export const auth = getAuth();
 export const db = getFirestore();
 export const signInWithGoogleRedirect = () => signInWithRedirect(auth, provider);
-export const signInDefault = async (email, password) => {
-  if (!email || !password) return;
-  return await signInWithEmailAndPassword(auth, email, password);
-};
+export const signInDefault = async (email, password) => await signInWithEmailAndPassword(auth, email, password);
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
   return await createUserWithEmailAndPassword(auth, email, password);
