@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import FormInput from '../form-input/form-input.component.jsx';
+import Button from '../button/button.component.jsx';
+import { UserContext } from '../../contexts/user.context.jsx';
+import { getRedirectResult } from "firebase/auth";
 import {
   auth,
   signInWithGoogleRedirect,
   signInDefault,
   createUserDocumentFromAuth
 } from '../../utils/firebase/firebase.utils.js';
-import { getRedirectResult } from "firebase/auth";
-import Button from "../button/button.component";
-import FormInput from "../form-input/form-input.component";
 import './sign-in-form.styles.scss';
 
 const defaultFormFields = {
@@ -18,24 +19,26 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+  const { setCurrentUser } = useContext(UserContext);
 
   const resetFormFields = () => setFormFields(defaultFormFields);
 
   useEffect(() => {
     const fetchDataAfterRedirect = async () => {
       const response = await getRedirectResult(auth);
-      if (response) {
-        const userDocRef = await createUserDocumentFromAuth(response.user);
+      if (response) {        
+        await createUserDocumentFromAuth(response.user);
+        setCurrentUser(response.user);
       }
     };
     fetchDataAfterRedirect();
-  }, [])
+  }, [setCurrentUser]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();    
     try {
-      const response = await signInDefault(email, password);
-      console.log(response);            
+      const { user } = await signInDefault(email, password);
+      setCurrentUser(user);
     } catch(error) {
       switch (error.code) {
         case 'auth/wrong-password': alert('Incorrect password'); break;
