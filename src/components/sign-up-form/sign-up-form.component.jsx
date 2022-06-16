@@ -5,22 +5,20 @@ import {
 } from "../../utils/firebase/firebase.utils.js";
 import FormInput from "../form-input/form-input.component.jsx";
 import Button from "../button/button.component.jsx";
-import './sign-up-form.styles.scss'
+import './sign-up-form.styles.scss';
 
 const defaultFormFields = {
   displayName: '',
   email: '',
   password: '',
   confirmPassword: ''
-}
+};
 
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
-  const resetFormFields = () => {
-    setFormFields(defaultFormFields);
-  }
+  const resetFormFields = () => setFormFields(defaultFormFields);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -41,7 +39,7 @@ const SignUpForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
-  };
+  }
 
   return (
     <div className='sign-up-container'>
@@ -88,7 +86,9 @@ const SignUpForm = () => {
             required: true
           }}          
         />
-        <Button type='Submit'>Sign Up</Button>
+        <div className='buttons-container'>
+          <Button type='Submit'>Sign Up</Button>
+        </div>
       </form>
     </div>
   )
