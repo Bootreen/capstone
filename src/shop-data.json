@@ -5,7 +5,7 @@
     "spiciness": 1,
     "sku": "105F100",
     "barcode": 4820518105105,
-    "imagesUrl": "https://tangelocat.com/images/sauce-tipsy-orange.jpg",
+    "imageUrl": "https://tangelocat.com/images/sauce-tipsy-orange.jpg",
     "price": 121
   },
   {
@@ -14,7 +14,7 @@
     "spiciness": 3,
     "sku": "104F100",
     "barcode": 4820518104108,
-    "imagesUrl": "https://tangelocat.com/images/sauce-hot-cassis.jpg",
+    "imageUrl": "https://tangelocat.com/images/sauce-hot-cassis.jpg",
     "price": 109
   },
   {
@@ -23,7 +23,7 @@
     "spiciness": 4,
     "sku": "106F100",
     "barcode": 4820518106102,
-    "imagesUrl": "https://tangelocat.com/images/sauce-rubus.jpg",
+    "imageUrl": "https://tangelocat.com/images/sauce-rubus.jpg",
     "price": 124
   },
   {
@@ -32,7 +32,7 @@
     "spiciness": 6,
     "sku": "102B100",
     "barcode": 4820518102104,
-    "imagesUrl": "https://tangelocat.com/images/sauce-harissa.jpg",
+    "imageUrl": "https://tangelocat.com/images/sauce-harissa.jpg",
     "price": 128
   },
   {
@@ -41,7 +41,7 @@
     "spiciness": 10,
     "sku": "103B100",
     "barcode": 4820518103040,
-    "imagesUrl": "https://tangelocat.com/images/sauce-ultimate-harissa.jpg",
+    "imageUrl": "https://tangelocat.com/images/sauce-ultimate-harissa.jpg",
     "price": 213
   },
   {
@@ -50,7 +50,7 @@
     "spiciness": 6,
     "sku": "900SM01",
     "barcode": 4820518077716,
-    "imagesUrl": "https://tangelocat.com/images/sauce-gift-standard.jpg",
+    "imageUrl": "https://tangelocat.com/images/sauce-gift-standard.jpg",
     "price": 480
   },
   {
@@ -59,7 +59,7 @@
     "spiciness": 10,
     "sku": "900UM01",
     "barcode": 4820518077723,
-    "imagesUrl": "https://tangelocat.com/images/sauce-gift-ultimate.jpg",
+    "imageUrl": "https://tangelocat.com/images/sauce-gift-ultimate.jpg",
     "price": 530
   },
   {
@@ -68,7 +68,7 @@
     "spiciness": 9,
     "sku": "210B040",
     "barcode": 4820518208042,
-    "imagesUrl": "https://tangelocat.com/images/ground-chili-7pot.jpg",
+    "imageUrl": "https://tangelocat.com/images/ground-chili-7pot.jpg",
     "price": 266
   },
   {
@@ -77,7 +77,7 @@
     "spiciness": 5,
     "sku": "207B040",
     "barcode": 4820518207045,
-    "imagesUrl": "https://tangelocat.com/images/ground-chili-bonnet.jpg",
+    "imageUrl": "https://tangelocat.com/images/ground-chili-bonnet.jpg",
     "price": 143
   },
   {
@@ -86,7 +86,7 @@
     "spiciness": 8,
     "sku": "204B040",
     "barcode": 4820518204044,
-    "imagesUrl": "https://tangelocat.com/images/ground-chili-ghost.jpg",
+    "imageUrl": "https://tangelocat.com/images/ground-chili-ghost.jpg",
     "price": 198
   },
   {
@@ -95,7 +95,7 @@
     "spiciness": 6,
     "sku": "203B040",
     "barcode": 4820518203047,
-    "imagesUrl": "https://tangelocat.com/images/ground-chili-habanero.jpg",
+    "imageUrl": "https://tangelocat.com/images/ground-chili-habanero.jpg",
     "price": 122
   },
   {
@@ -104,7 +104,7 @@
     "spiciness": 2,
     "sku": "209B040",
     "barcode": 4820518200046,
-    "imagesUrl": "https://tangelocat.com/images/ground-chili-jalapeno.jpg",
+    "imageUrl": "https://tangelocat.com/images/ground-chili-jalapeno.jpg",
     "price": 89
   },
   {
@@ -113,7 +113,7 @@
     "spiciness": 4,
     "sku": "206B040",
     "barcode": 4820518206048,
-    "imagesUrl": "https://tangelocat.com/images/ground-chili-pequin.jpg",
+    "imageUrl": "https://tangelocat.com/images/ground-chili-pequin.jpg",
     "price": 119
   },
   {
@@ -122,7 +122,7 @@
     "spiciness": 10,
     "sku": "205B040",
     "barcode": 4820518205041,
-    "imagesUrl": "https://tangelocat.com/images/ground-chili-reaper.jpg",
+    "imageUrl": "https://tangelocat.com/images/ground-chili-reaper.jpg",
     "price": 281
   },
   {
@@ -131,7 +131,7 @@
     "spiciness": 10,
     "sku": "211B040",
     "barcode": 4820518209049,
-    "imagesUrl": "https://tangelocat.com/images/ground-chili-scorpion.jpg",
+    "imageUrl": "https://tangelocat.com/images/ground-chili-scorpion.jpg",
     "price": 274
   },
   {
@@ -140,7 +140,7 @@
     "spiciness": 9,
     "sku": "301FR",
     "barcode": 4820518301002,
-    "imagesUrl": "https://tangelocat.com/images/fresh-chili-7pot.jpg",
+    "imageUrl": "https://tangelocat.com/images/fresh-chili-7pot.jpg",
     "price": 60
   },
   {
@@ -149,7 +149,7 @@
     "spiciness": 10,
     "sku": "302FR",
     "barcode": 4820518302009,
-    "imagesUrl": "https://tangelocat.com/images/fresh-chili-carolina.jpg",
+    "imageUrl": "https://tangelocat.com/images/fresh-chili-carolina.jpg",
     "price": 80
   },
   {
@@ -158,7 +158,7 @@
     "spiciness": 4,
     "sku": "303FR",
     "barcode": 4820518303006,
-    "imagesUrl": "https://tangelocat.com/images/fresh-chili-ebony-giant.jpg",
+    "imageUrl": "https://tangelocat.com/images/fresh-chili-ebony-giant.jpg",
     "price": 40
   },
   {
@@ -167,7 +167,7 @@
     "spiciness": 7,
     "sku": "304FR",
     "barcode": 4820518304003,
-    "imagesUrl": "https://tangelocat.com/images/fresh-chili-fatalii-white.jpg",
+    "imageUrl": "https://tangelocat.com/images/fresh-chili-fatalii-white.jpg",
     "price": 50
   },
   {
@@ -176,7 +176,7 @@
     "spiciness": 5,
     "sku": "305FR",
     "barcode": 4820518305000,
-    "imagesUrl": "https://tangelocat.com/images/fresh-chili-francisca.jpg",
+    "imageUrl": "https://tangelocat.com/images/fresh-chili-francisca.jpg",
     "price": 35
   },
   {
@@ -185,7 +185,7 @@
     "spiciness": 2,
     "sku": "306FR",
     "barcode": 4820518306007,
-    "imagesUrl": "https://tangelocat.com/images/fresh-chili-jalapeno.jpg",
+    "imageUrl": "https://tangelocat.com/images/fresh-chili-jalapeno.jpg",
     "price": 15
   }
 ]

@@ -1,13 +1,14 @@
-
-import WEB_STORE_DB from '../../assets/shop-data.json';
+import { useContext } from 'react';
+import { ProductsContext } from '../../contexts/products.context.jsx';
+import ProductCard from '../../components/product-card/product-card.component.jsx';
+import './shop.styles.scss';
 
 const Shop = () => {
+  const { products } = useContext(ProductsContext);
   return (
-    <div>
-      {WEB_STORE_DB.map(({ barcode, title }) => (
-        <div key={barcode}>
-          <h1>{title}</h1>
-        </div>
+    <div className='products-container'>      
+      {products.map((product) => (
+        <ProductCard key={product.barcode} product={product}/>
       ))}
     </div>
   )
