@@ -10,8 +10,10 @@ export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const value = {currentUser, setCurrentUser};
 
-  useEffect(() => {    
-    const unsubscribe = onAuthStateChangedListener((user) => {      
+  useEffect(() => {
+    console.log('Call outside event listener');
+    const unsubscribe = onAuthStateChangedListener((user) => {
+      console.log('Call inside event listener: ', user);
       if (user) {createUserDocumentFromAuth(user)};
       setCurrentUser(user);
     });
