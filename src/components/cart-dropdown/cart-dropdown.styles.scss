@@ -21,13 +21,22 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-  }
 
-  .cart-items:hover {
-    overflow: auto;
+    &:hover {
+      overflow: auto;
+    }
   }
 
   button {
     margin-top: auto;
+  }
+
+  .nav-link {
+    position: relative;
+    bottom: -10px;
+    height: 0%;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.7vw;
   }
 }

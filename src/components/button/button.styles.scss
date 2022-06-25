@@ -43,4 +43,26 @@
       border: none;
     }
   }
+
+  &.navigation {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  &.borderless {
+    border: none;
+    width: 0%;
+    min-width: 10px;
+    padding: 0 20px;
+    height: auto;
+    line-height: normal;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    align-items: center;
+    font-size: inherit;
+    text-transform: none;
+  }
 }
