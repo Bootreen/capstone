@@ -20,6 +20,10 @@
     height: 240px;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+  }
+
+  .cart-items:hover {
     overflow: auto;
   }
 
