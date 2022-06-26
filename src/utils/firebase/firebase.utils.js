@@ -8,7 +8,16 @@ import {
   signOut,
   onAuthStateChanged
 } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBNCEMFIudw0eokya7Yn5adOVB9mb_lNPk",
@@ -29,10 +38,45 @@ provider.setCustomParameters({
 
 export const auth = getAuth();
 export const db = getFirestore();
-export const signInWithGoogleRedirect = async () => await signInWithRedirect(auth, provider);
-export const signInDefault = async (email, password) => await signInWithEmailAndPassword(auth, email, password);
+
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+
+  objectsToAdd.forEach(object => {
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
+  });
+
+  await batch.commit();
+  console.log('Done');
+};
+
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, 'categories');
+  const tempQuery = query(collectionRef);
+  const querySnapshot = await getDocs(tempQuery);
+
+  // Single category simplified output
+  const { title, items } = querySnapshot.docs[0].data();
+  return {[title.toLowerCase()]: items};
+
+  // Multiply categories code dummy
+  // const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+  //   const { title, items } = docSnapshot.data();
+  //   acc[title.toLowerCase()] = items;
+  //   return acc;
+  // }, {});
+  // return categoryMap;
+};
+
+export const signInWithGoogleRedirect = async () =>
+  await signInWithRedirect(auth, provider);
+export const signInDefault = async (email, password) =>
+  await signInWithEmailAndPassword(auth, email, password);
 export const signOutUser = async () => await signOut(auth);
-export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
@@ -47,7 +91,7 @@ export const createUserDocumentFromAuth = async (
 
   const userDocRef = doc(db, 'users', userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
-  
+
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
