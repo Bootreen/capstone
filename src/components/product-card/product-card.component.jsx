@@ -4,13 +4,14 @@ import Button from '../button/button.component.jsx';
 import './product-card.styles.scss';
 
 const ProductCard = ({ product }) => {
-  const { title, price, imageUrl } = product;
+  const { title, price, imageUrl, spiciness } = product;
   const { addItemToCart } = useContext(CartContext);
   const addToCartHandler = () => addItemToCart(product);
 
   return (
     <div className='product-card-container'>
       <img src={imageUrl} alt={title} />
+      <img src={`https://tangelocat.com/images/${spiciness}.png`} alt='' className='spiciness-label' />
       <div className='product-footer'>
         <div className='title'>{title}</div>
         <span className='price'>₴{price}</span>

@@ -53,15 +53,15 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
 };
 
 export const getCategoriesAndDocuments = async () => {
-  const collectionRef = collection(db, 'categories');
+  const collectionRef = collection(db, 'shop');
   const tempQuery = query(collectionRef);
   const querySnapshot = await getDocs(tempQuery);
 
-  // Single category simplified output
+  // Single category simplified download
   const { title, items } = querySnapshot.docs[0].data();
   return {[title.toLowerCase()]: items};
 
-  // Multiply categories code dummy
+  // Multiple categories download
   // const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
   //   const { title, items } = docSnapshot.data();
   //   acc[title.toLowerCase()] = items;

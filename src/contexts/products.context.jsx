@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-// Upload products to DB from JSON dependencies
+// Bulk product upload to Firestore from JSON dependencies:
 // import SHOP_DB from '../shop-data.js';
 // import { addCollectionAndDocuments } from '../utils/firebase/firebase.utils.js';
 import { getCategoriesAndDocuments } from '../utils/firebase/firebase.utils.js';
@@ -20,9 +20,9 @@ export const ProductsProvider = ({ children }) => {
     getCategoriesMap();
   }, []);
 
-  // Upload products to DB from JSON dummy function
+  // Bulk product upload to Firestore from JSON
   // useEffect(() => {
-  //   addCollectionAndDocuments('categories', SHOP_DB);
+  //   addCollectionAndDocuments('shop', SHOP_DB);
   // }, [])
 
   const value = { products, setProducts };
