@@ -11,7 +11,7 @@ const Shop = () => {
     <Fragment>
       <div className='spiciness-toggle-input'>
         <label htmlFor='spiciness' className='spiciness-label'>Show Spiciness</label>
-        <input id='spiciness' type='checkbox' className='spiciness-checkbox' onClick={spicinessToggleHandler}/>
+        <input id='spiciness' type='checkbox' className='spiciness-checkbox' onChange={spicinessToggleHandler}/>
       </div>
       <Outlet/>
     </Fragment>

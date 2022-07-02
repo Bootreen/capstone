@@ -7,10 +7,10 @@ import './product-card.styles.scss';
 const ProductCard = ({ product }) => {
   const IMG_URL_PREFIX = 'https://tangelocat.com/images/';
   const IMG_EXTENSION = '.png';
-  const { title, price, imageUrl, spiciness } = product;
+  const { isShowSpiciness } = useContext(ProductsContext);
   const { addItemToCart } = useContext(CartContext);
   const addToCartHandler = () => addItemToCart(product);
-  const { isShowSpiciness } = useContext(ProductsContext);
+  const { title, price, imageUrl, spiciness } = product;
 
   return (
     <div className='product-card-container'>
