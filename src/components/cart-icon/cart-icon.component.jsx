@@ -13,6 +13,6 @@ const CartIcon = () => {
       <span className='item-count'>{cartCounter}</span>
     </div>
   )
-}
+};
 
 export default CartIcon;

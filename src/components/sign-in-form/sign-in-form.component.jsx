@@ -11,19 +11,19 @@ import './sign-in-form.styles.scss';
 
 const defaultFormFields = {
   email: '',
-  password: ''  
+  password: ''
 };
 
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-  
+
   const resetFormFields = () => setFormFields(defaultFormFields);
 
   useEffect(() => (async () => await getRedirectResult(auth)), []);
 
   const handleSubmit = async (event) => {
-    event.preventDefault();    
+    event.preventDefault();
     try {
       await signInDefault(email, password);
       resetFormFields();
@@ -33,10 +33,10 @@ const SignInForm = () => {
         case 'auth/user-not-found': alert('There is no user with such email'); break;
         default: alert('Login error');
         console.log('User login error:', error.message);
-      }      
-    }    
+      }
+    }
   }
-  
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
@@ -47,7 +47,7 @@ const SignInForm = () => {
       <h2>I already have an account</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
-        <FormInput 
+        <FormInput
           inputGroupOptions={{
             label: 'Email',
             type: 'email',

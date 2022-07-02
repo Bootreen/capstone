@@ -1,6 +1,6 @@
 import './category-item.styles.scss';
 
-const CategoryItem = ({ category }) => (  
+const CategoryItem = ({ category }) => (
   <div className='category-container'>
     <div className='background-image' style={{
       backgroundImage: `url(${category.imageUrl})`
@@ -10,6 +10,6 @@ const CategoryItem = ({ category }) => (
       <p>Shop now</p>
     </div>
   </div>
-)
+);
 
 export default CategoryItem;

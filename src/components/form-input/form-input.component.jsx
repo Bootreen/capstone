@@ -2,7 +2,7 @@ import './form-input.styles.scss';
 
 const FormInput = ({ inputGroupOptions }) => {
   const { label, ...inputOptions } = inputGroupOptions;
-  
+
   return (
     <div className='group'>
       <input className='form-input' {...inputOptions}/>
@@ -13,6 +13,6 @@ const FormInput = ({ inputGroupOptions }) => {
       )}
     </div>
   )
-}
+};
 
 export default FormInput;

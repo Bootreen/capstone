@@ -6,11 +6,13 @@ import { getCategoriesAndDocuments } from '../utils/firebase/firebase.utils.js';
 
 export const ProductsContext = createContext({
   products: [],
-  setProducts: () => null
+  setProducts: () => null,
+  isShowSpiciness: false
 });
 
 export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [isShowSpiciness, setIsShowSpiciness] = useState(false);
 
   useEffect(() => {
     const getCategoriesMap = async () => {
@@ -25,7 +27,7 @@ export const ProductsProvider = ({ children }) => {
   //   addCollectionAndDocuments('shop', SHOP_DB);
   // }, [])
 
-  const value = { products, setProducts };
+  const value = { products, setProducts, isShowSpiciness, setIsShowSpiciness };
 
   return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>
 };

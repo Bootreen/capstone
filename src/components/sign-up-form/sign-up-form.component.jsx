@@ -25,21 +25,21 @@ const SignUpForm = () => {
     if (password !== confirmPassword) {
       alert('Passwords don\'t match');
       return;
-    }
+    };
 
     try {
-      const { user } = await createAuthUserWithEmailAndPassword(email, password);      
+      const { user } = await createAuthUserWithEmailAndPassword(email, password);
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
     } catch(error) {
       console.log('User creation error:', error.message);
-    }    
-  }
+    };
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
-  }
+  };
 
   return (
     <div className='sign-up-container'>
@@ -64,7 +64,7 @@ const SignUpForm = () => {
             name: 'email',
             value: email,
             required: true
-          }}          
+          }}
         />
         <FormInput
           inputGroupOptions={{
@@ -74,7 +74,7 @@ const SignUpForm = () => {
             name: 'password',
             value: password,
             required: true
-          }}          
+          }}
         />
         <FormInput
           inputGroupOptions={{
@@ -84,7 +84,7 @@ const SignUpForm = () => {
             name: 'confirmPassword',
             value: confirmPassword,
             required: true
-          }}          
+          }}
         />
         <div className='buttons-container'>
           <Button type='Submit'>Sign Up</Button>

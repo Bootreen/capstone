@@ -35,6 +35,6 @@ const MenuBar = () => {
       <Outlet />
     </Fragment>
   );
-}
+};
 
 export default MenuBar;

@@ -4,14 +4,17 @@ import Home from './routes/home/home.component.jsx';
 import AuthenticationPage from './routes/authentication/authentication.component.jsx';
 import CheckoutPage from './routes/checkout/checkout.component.jsx';
 import Shop from './routes/shop/shop.component.jsx';
+import CategoriesPreview from './components/categories-preview/categories-preview.component.jsx';
 
 const App = () => (
   <Routes>
     <Route path='/' element={<MenuBar />}>
-      <Route index element={<Home />} />
-      <Route path='shop' element={<Shop />} />
-      <Route path='auth' element={<AuthenticationPage />} />
-      <Route path='checkout' element={<CheckoutPage />} />
+      <Route index element={<Home />}/>
+      <Route path='shop/' element={<Shop />}>
+        <Route index element={<CategoriesPreview />}/>
+      </Route>
+      <Route path='auth' element={<AuthenticationPage />}/>
+      <Route path='checkout' element={<CheckoutPage />}/>
     </Route>
   </Routes>
 );

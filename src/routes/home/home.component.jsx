@@ -30,13 +30,13 @@ const Home = () => {
       imageUrl: 'https://tangelocat.com/images/hot-min.jpg'
     }
   ];
-  
+
   return (
     <div>
       <Outlet />
       <CategoriesList categories={categories} />
     </div>
   );
-}
+};
 
 export default Home;

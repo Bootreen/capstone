@@ -14,7 +14,7 @@ const addCartItem = (cartItems, productToAdd) => {
   }
 
   return [...cartItems, { ...productToAdd, quantity: 1 }];
-}
+};
 
 const removeCartItem = (cartItems, productToRemove) =>
   cartItems.filter(cartItem => cartItem.barcode !== productToRemove.barcode);

@@ -1,7 +1,21 @@
-.products-container {  
+.products-container {
   padding: 0 10px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 10px;
   row-gap: 20px;
+}
+
+.spiciness-toggle-input {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+
+  .spiciness-label {
+    font-size: 1.2em;
+  }
+
+  .spiciness-checkbox {
+    width: 20px;
+  }
 }
