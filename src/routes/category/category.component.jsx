@@ -2,80 +2,66 @@ import { Fragment, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ProductsContext } from '../../contexts/products.context.jsx';
 import ProductCard from '../../components/product-card/product-card.component.jsx';
+import { titleUrlToggle } from '../../utils/firebase/firebase.utils.js';
 import './category.styles.scss';
 
 const Category = ({ index }) => {
-  const { categories, products, getProductsByCategory, getProductsBySpiciness } = useContext(ProductsContext);
+  const SPICINESS = {
+    'mild': [1, 5],
+    'hot': [6, 11]
+  }
+  const { categories, getProductsByCategory } = useContext(ProductsContext);
   const { path } = useParams();
+  const categoryPath = index ? '' : titleUrlToggle(path);
 
-  const renderProductListByCategory = (category) => categories.includes(category) ?
-  (<div className='category-container'>
-    <h2>
-      <Link to='/shop'>
-        <span className='category-title'>SHOP</span>
-      </Link>
-      <span className='category-title'> / {category.toUpperCase()}</span>
-    </h2>
-    <div className='category'>
-      {
-        getProductsByCategory(category)
-          .map(product =>
-            (<ProductCard key={product.barcode} product={product}/>))
-      }
-    </div>
-  </div>) : null;
+  const filters = (mode) => {
+    if (mode === 'preview') return ((_, index) => index < 4)
+      else if (mode.length === 2 && typeof mode[0] === 'number' && typeof mode[1] === 'number')
+        return (product => product.spiciness >= mode[0] && product.spiciness <= mode[1])
+          else return (_ => _)
+  };
 
-  if (index) return (
-    <Fragment>
-      {categories.map((category, index) => (
-        <div key={index} className='category-container'>
-          <h2>
-            <Link to={`/shop/${category.replaceAll(' ', '-').toLowerCase()}`}>
-              <span className='category-title'>{category.toUpperCase()}</span>
-            </Link>
-          </h2>
-          <div className='category'>
+  const renderProductList = (categories, ...params) => {
+    return (
+    categories.map((category, index) => (
+      <div className='category-container' key={index}>
+        <h2>
+          {(categories.length > 1
+            ? (
+              <Link to={`/shop/${titleUrlToggle(category)}`}>
+                <span className='category-title'>{category.toUpperCase()}</span>
+              </Link>
+              )
+            : (
+              <Fragment>
+                <Link to='/shop'>
+                  <span className='category-title'>SHOP</span>
+                </Link>
+                <span className='category-title'> / </span>
+                <span className='category-title'>{category.toUpperCase()}</span>
+              </Fragment>
+            )
+          )}
+        </h2>
+        <div className='category'>
           {
-            products
-              .filter((_, index) => index < 4)
+            getProductsByCategory(category)
+              .filter(filters(...params))
               .map(product =>
                 (<ProductCard key={product.barcode} product={product}/>))
           }
-          </div>
         </div>
-      ))}
-    </Fragment>
-  );
+      </div>
+    ))
+  )};
 
-  const category = path.replaceAll('-', ' ').toLowerCase();
-
-  const renderProductListBySpiciness = (fromValue, toValue) => (
-    <Fragment>
-      {categories.map((category, index) => (
-        <div key={index} className='category-container'>
-          <h2>
-            <Link to={`/shop/${category.replaceAll(' ', '-').toLowerCase()}`}>
-              <span className='category-title'>{category.toUpperCase()}</span>
-            </Link>
-          </h2>
-          <div className='category'>
-            {
-              getProductsBySpiciness(fromValue, toValue)
-                .filter(product => product.category.toLowerCase() === category)
-                .map(product =>
-                  (<ProductCard key={product.barcode} product={product}/>))
-            }
-          </div>
-        </div>
-      ))}
-    </Fragment>
-  );
-
-  switch (category) {
-    case 'mild': return renderProductListBySpiciness(1, 5);
-    case 'hot': return renderProductListBySpiciness(6, 11);
-    default: return renderProductListByCategory(category);
-  }
+  // Rendering all categories preview mode by default
+  return categoryPath === '' ? renderProductList(categories, 'preview')
+    // Single category subroute
+    : categories.includes(categoryPath) ? renderProductList([categoryPath], 'full')
+    // Spiciness filter mode
+    : categoryPath === 'mild' || 'hot' ? renderProductList(categories, SPICINESS[categoryPath])
+    : null;
 }
 
 export default Category;

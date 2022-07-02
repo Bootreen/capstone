@@ -11,8 +11,7 @@ export const ProductsContext = createContext({
   setProducts: () => {},
   isShowSpiciness: false,
   setIsShowSpiciness: () => {},
-  getProductsByCategory: () => {},
-  getProductsBySpiciness: () => {}
+  getProductsByCategory: () => {}
 });
 
 export const ProductsProvider = ({ children }) => {
@@ -44,14 +43,10 @@ export const ProductsProvider = ({ children }) => {
   const getProductsByCategory = (category) => products.filter(product =>
     product.category.toLowerCase() === category);
 
-  const getProductsBySpiciness = (fromValue, toValue) => products.filter(product =>
-    product.spiciness >= fromValue && product.spiciness <= toValue);
-
   const value = {
     categories,
     products,
     getProductsByCategory,
-    getProductsBySpiciness,
     isShowSpiciness,
     setIsShowSpiciness
   };
