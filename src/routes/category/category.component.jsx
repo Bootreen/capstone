@@ -1,20 +1,62 @@
 import { Fragment, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { ProductsContext } from '../../contexts/products.context.jsx';
 import ProductCard from '../../components/product-card/product-card.component.jsx';
 import './category.styles.scss';
 
-const Category = () => {
+const Category = ({ index }) => {
+  const { categories, products, getProductsByCategory, getProductsBySpiciness } = useContext(ProductsContext);
   const { path } = useParams();
+
+  const renderProductListByCategory = (category) => categories.includes(category) ?
+  (<div className='category-container'>
+    <h2>
+      <Link to='/shop'>
+        <span className='category-title'>SHOP</span>
+      </Link>
+      <span className='category-title'> / {category.toUpperCase()}</span>
+    </h2>
+    <div className='category'>
+      {
+        getProductsByCategory(category)
+          .map(product =>
+            (<ProductCard key={product.barcode} product={product}/>))
+      }
+    </div>
+  </div>) : null;
+
+  if (index) return (
+    <Fragment>
+      {categories.map((category, index) => (
+        <div key={index} className='category-container'>
+          <h2>
+            <Link to={`/shop/${category.replaceAll(' ', '-').toLowerCase()}`}>
+              <span className='category-title'>{category.toUpperCase()}</span>
+            </Link>
+          </h2>
+          <div className='category'>
+          {
+            products
+              .filter((_, index) => index < 4)
+              .map(product =>
+                (<ProductCard key={product.barcode} product={product}/>))
+          }
+          </div>
+        </div>
+      ))}
+    </Fragment>
+  );
+
   const category = path.replaceAll('-', ' ').toLowerCase();
-  const { categories, getProductsByCategory, getProductsBySpiciness } = useContext(ProductsContext);
 
   const renderProductListBySpiciness = (fromValue, toValue) => (
     <Fragment>
       {categories.map((category, index) => (
-        <Fragment key={index}>
+        <div key={index} className='category-container'>
           <h2>
-            <span className='category-title'>{category.toUpperCase()}</span>
+            <Link to={`/shop/${category.replaceAll(' ', '-').toLowerCase()}`}>
+              <span className='category-title'>{category.toUpperCase()}</span>
+            </Link>
           </h2>
           <div className='category'>
             {
@@ -24,24 +66,10 @@ const Category = () => {
                   (<ProductCard key={product.barcode} product={product}/>))
             }
           </div>
-        </Fragment>
+        </div>
       ))}
     </Fragment>
   );
-
-  const renderProductListByCategory = (category) => categories.includes(category) ?
-    (<Fragment>
-      <h2>
-        <span className='category-title'>{category.toUpperCase()}</span>
-      </h2>
-      <div className='category'>
-        {
-          getProductsByCategory(category)
-            .map(product =>
-              (<ProductCard key={product.barcode} product={product}/>))
-        }
-      </div>
-    </Fragment>) : null;
 
   switch (category) {
     case 'mild': return renderProductListBySpiciness(1, 5);

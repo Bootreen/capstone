@@ -1,3 +1,8 @@
+.category-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+
   .category-title {
     font-size: 28px;
     margin-bottom: 25px;
@@ -10,3 +15,4 @@
     column-gap: 20px;
     row-gap: 20px;
   }
+}
