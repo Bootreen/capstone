@@ -69,7 +69,13 @@ const SignInForm = () => {
         />
         <ButtonsContainer>
           <Button type='submit'>Sign In</Button>
-          <Button type='button' buttonVariation='google' onClick={signInWithGoogleRedirect}>Google Sign In</Button>
+          <Button
+            type='button'
+            buttonVariation='google'
+            onClick={signInWithGoogleRedirect}
+          >
+            Google Sign In
+          </Button>
         </ButtonsContainer>
       </form>
     </SignInContainer>
