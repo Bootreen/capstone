@@ -2,7 +2,14 @@ import { useContext } from 'react';
 import { CartContext } from '../../contexts/cart.context.jsx';
 import { ProductsContext } from '../../contexts/products.context.jsx';
 import Button from '../button/button.component.jsx';
-import './product-card.styles.scss';
+import {
+  ProductCardContainer,
+  ProductFooter,
+  ProductImage,
+  ProductPrice,
+  ProductTitle,
+  SpicinessLabel
+} from './product-card.styles.jsx';
 
 const ProductCard = ({ product }) => {
   const IMG_URL_PREFIX = 'https://tangelocat.com/images/';
@@ -13,17 +20,17 @@ const ProductCard = ({ product }) => {
   const { title, price, imageUrl, spiciness } = product;
 
   return (
-    <div className='product-card-container'>
-      <img src={imageUrl} alt={title} />
+    <ProductCardContainer>
+      <ProductImage src={imageUrl} alt={title} />
       {isShowSpiciness && (
-        <img src={IMG_URL_PREFIX + spiciness + IMG_EXTENSION} alt='' className='spiciness-label'/>
+        <SpicinessLabel src={IMG_URL_PREFIX + spiciness + IMG_EXTENSION} alt='' className='spiciness-label'/>
       )}
-      <div className='product-footer'>
-        <div className='title'>{title}</div>
-        <span className='price'>₴{price}</span>
-      </div>
+      <ProductFooter>
+        <ProductTitle>{title}</ProductTitle>
+        <ProductPrice>₴{price}</ProductPrice>
+      </ProductFooter>
       <Button type='button' buttonVariation='inverted' onClick={addToCartHandler}>Add to cart</Button>
-    </div>
+    </ProductCardContainer>
   )
 };
 

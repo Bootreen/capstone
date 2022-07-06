@@ -1,20 +1,21 @@
-import { Link } from 'react-router-dom';
-import { titleUrlToggle } from '../../utils/firebase/firebase.utils.js';
-import './directory-item.styles.scss';
+import { titleUrlToggle } from '../../utils/miscellaneous.utils.js';
+import {
+  BackgroundImage,
+  Directory,
+  DirectoryLink
+} from './directory-item.styles.jsx';
 
-const DirectoryItem = ({ category }) => (
-  <Link
-    className='directory-container'
-    to={`/shop/${titleUrlToggle(category.title)}`}
-  >
-    <div className='background-image' style={{
-      backgroundImage: `url(${category.imageUrl})`
-    }} />
-    <div className='directory'>
-      <h2>{category.title}</h2>
-      <p>Shop now</p>
-    </div>
-  </Link>
-);
+const DirectoryItem = ({ category }) => {
+  const { title, imageUrl } = category;
+  return (
+    <DirectoryLink to={`/shop/${titleUrlToggle(title)}`}>
+      <BackgroundImage imageUrl={imageUrl}/>
+      <Directory>
+        <h2>{title}</h2>
+        <p>Shop now</p>
+      </Directory>
+    </DirectoryLink>
+  )
+};
 
 export default DirectoryItem;

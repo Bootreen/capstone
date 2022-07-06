@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { CartContext } from '../../contexts/cart.context.jsx';
 import Button from '../../components/button/button.component.jsx';
-import './checkout.styles.scss';
+import { CheckoutContainer, CheckoutImage, CheckoutRow, QuantityContainer, TableHeaderRow, TotalRow } from './checkout.styles.jsx';
 
 const CheckoutPage = () => {
   const {
@@ -16,37 +16,55 @@ const CheckoutPage = () => {
   useEffect(() => setIsCartOpen(false), [setIsCartOpen]);
 
   return (
-    <div className='checkout-container'>
-      <div className='checkout-row table-header-row'>
-        <h5 className='first-column'>Product</h5>
+    <CheckoutContainer>
+      <TableHeaderRow>
+        <h5>Product</h5>
         <h5>Description</h5>
         <h5>Quantity</h5>
         <h5>Price, UAH</h5>
         <h5>Remove</h5>
-      </div>
+      </TableHeaderRow>
       {cartItems.map(item => {
         const { barcode, title, quantity, price, imageUrl } = item;
         const incItemQuantityHandler = () => addItemToCart(item);
         const decItemQuantityHandler = () => decItemInCart(item);
         const removeItemHandler = () => removeItemFromCart(item);
         return (
-        <div key={barcode} className='checkout-row'>
-          <img src={imageUrl} alt={title} className='checkout-image' />
+        <CheckoutRow key={barcode}>
+          <CheckoutImage src={imageUrl} alt={title}/>
           <div>{title}</div>
-          <div className='quantity-container'>
-            <Button type='button' buttonVariation='borderless' onClick={decItemQuantityHandler}>{`◄`}</Button>
+          <QuantityContainer>
+            <Button
+              type='button'
+              buttonVariation='borderless'
+              onClick={decItemQuantityHandler}
+            >
+             ◄
+            </Button>
               {quantity}
-            <Button type='button' buttonVariation='borderless' onClick={incItemQuantityHandler}>{`►`}</Button>
-          </div>
+            <Button
+              type='button'
+              buttonVariation='borderless'
+              onClick={incItemQuantityHandler}
+            >
+              ►
+            </Button>
+          </QuantityContainer>
           <div>{price}</div>
-          <Button type='button' buttonVariation='borderless' onClick={removeItemHandler}>x</Button>
-        </div>
+          <Button
+            type='button'
+            buttonVariation='borderless'
+            onClick={removeItemHandler}
+          >
+            x
+          </Button>
+        </CheckoutRow>
       )})}
-      <div className='checkout-row total-row'>
-        <h4 className='total'>Cart Total:</h4>
-        <h4 className='amount'>{cartTotal}</h4>
-      </div>
-    </div>
+      <TotalRow>
+        <h4>Cart Total:</h4>
+        <h4>{cartTotal}</h4>
+      </TotalRow>
+    </CheckoutContainer>
   )
 };
 

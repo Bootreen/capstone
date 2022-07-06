@@ -11,8 +11,8 @@ const App = () => (
     <Route path='/' element={<MenuBar />}>
       <Route index element={<Home />}/>
       <Route path='shop/' element={<Shop />}>
-        <Route index element={<Category index={true}/>}/>
-        <Route path=':path' element={<Category index={false}/>}/>
+        <Route index element={<Category parent={true}/>}/>
+        <Route path=':path' element={<Category parent={false}/>}/>
       </Route>
       <Route path='auth' element={<AuthenticationPage />}/>
       <Route path='checkout' element={<CheckoutPage />}/>

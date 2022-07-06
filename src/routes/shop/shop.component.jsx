@@ -1,7 +1,7 @@
 import { Fragment, useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 import { ProductsContext } from '../../contexts/products.context.jsx';
-import './shop.styles.scss';
+import { SpicinessToggle, ToggleLabel, ToggleCheckbox } from './shop.styles.jsx';
 
 const Shop = () => {
   const { isShowSpiciness, setIsShowSpiciness } = useContext(ProductsContext);
@@ -9,15 +9,14 @@ const Shop = () => {
 
   return (
     <Fragment>
-      <div className='spiciness-toggle-input'>
-        <label htmlFor='spiciness' className='spiciness-label'>Show Spiciness</label>
-        <input id='spiciness'
+      <SpicinessToggle>
+        <ToggleLabel htmlFor='spiciness'>Show Spiciness</ToggleLabel>
+        <ToggleCheckbox id='spiciness'
           type='checkbox'
-          className='spiciness-checkbox'
           checked={isShowSpiciness}
           onChange={spicinessToggleHandler}
         />
-      </div>
+      </SpicinessToggle>
       <Outlet/>
     </Fragment>
   )
