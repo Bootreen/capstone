@@ -23,7 +23,7 @@ const ProductCard = ({ product }) => {
     <ProductCardContainer>
       <ProductImage src={imageUrl} alt={title} />
       {isShowSpiciness && (
-        <SpicinessLabel src={IMG_URL_PREFIX + spiciness + IMG_EXTENSION} alt='' className='spiciness-label'/>
+        <SpicinessLabel src={IMG_URL_PREFIX + spiciness + IMG_EXTENSION} alt=''/>
       )}
       <ProductFooter>
         <ProductTitle>{title}</ProductTitle>
