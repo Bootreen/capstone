@@ -1,7 +1,14 @@
 import { useEffect, useContext } from 'react';
 import { CartContext } from '../../contexts/cart.context.jsx';
 import Button from '../../components/button/button.component.jsx';
-import { CheckoutContainer, CheckoutImage, CheckoutRow, QuantityContainer, TableHeaderRow, TotalRow } from './checkout.styles.jsx';
+import {
+  CheckoutContainer,
+  CheckoutImage,
+  CheckoutRow,
+  QuantityContainer,
+  TableHeaderRow,
+  TotalRow
+} from './checkout.styles.jsx';
 
 const CheckoutPage = () => {
   const {
@@ -13,7 +20,9 @@ const CheckoutPage = () => {
     cartTotal
   } = useContext(CartContext);
 
-  useEffect(() => setIsCartOpen(false), [setIsCartOpen]);
+  // Autoclose cart at the first checkout page render
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => setIsCartOpen(false), []);
 
   return (
     <CheckoutContainer>
