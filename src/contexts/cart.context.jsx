@@ -1,4 +1,5 @@
 import { createContext, useReducer } from 'react';
+import { createAction } from '../utils/reducer/reducer.utils.js';
 
 const addCartItem = (cartItems, productToAdd) => {
   const existingCartItem = cartItems.find(
@@ -43,8 +44,6 @@ export const CART_ACTIONS = {
 };
 
 const cartReducer = (state, { type, payload }) => {
-  const { cartItems, cartCounter, cartTotal } = payload;
-
   switch (type) {
     case CART_ACTIONS.OPEN_CLOSE:
       return {
@@ -54,9 +53,7 @@ const cartReducer = (state, { type, payload }) => {
     case CART_ACTIONS.UPDATE:
       return {
         ...state,
-        cartItems: cartItems,
-        cartCounter: cartCounter,
-        cartTotal: cartTotal
+        ...payload
       }
     default:
       throw new Error(`Unhandled type ${type} in cartReducer`);
@@ -74,27 +71,24 @@ export const CartProvider = ({ children }) => {
   const [ state, dispatch ] = useReducer(cartReducer, INITIAL_STATE);
   const { isCartOpen, cartItems, cartCounter, cartTotal } = state;
 
-  const cartDispatcher = (type, payload) => dispatch({ type: type, payload: payload });
-
   const setIsCartOpen = (booleanValue) =>
-    cartDispatcher(CART_ACTIONS.OPEN_CLOSE, booleanValue);
+    dispatch(createAction(CART_ACTIONS.OPEN_CLOSE, booleanValue));
 
   const cartUpdate = (newCartItems) => {
-    const { cartCounter, cartTotal } = cartRecount(newCartItems);
-    const payload = {
+    const { newCartCounter, newCartTotal } = cartRecount(newCartItems);
+    dispatch(createAction(CART_ACTIONS.UPDATE, {
       cartItems: newCartItems,
-      cartCounter: cartCounter,
-      cartTotal: cartTotal
-    };
-    cartDispatcher(CART_ACTIONS.UPDATE, payload);
+      cartCounter: newCartCounter,
+      cartTotal: newCartTotal
+    }));
   };
 
   const addItemToCart = (productToAdd) =>
     cartUpdate(addCartItem(cartItems, productToAdd));
 
   const decItemInCart = (productToDecrease) =>
-  productToDecrease.quantity === 1
-    ? cartUpdate(removeCartItem(cartItems, productToDecrease))
+  productToDecrease.quantity === 0
+    ? null
     : cartUpdate(decreaseCartItem(cartItems, productToDecrease));
 
   const removeItemFromCart = (productToRemove) =>
@@ -104,10 +98,10 @@ export const CartProvider = ({ children }) => {
     const recountedCart = cartItems
       .reduce((total, item) =>
         {return {
-          cartCounter: total.cartCounter + item.quantity,
-          cartTotal: total.cartTotal + item.quantity * item.price
+          newCartCounter: total.newCartCounter + item.quantity,
+          newCartTotal: total.newCartTotal + item.quantity * item.price
         }},
-        { cartCounter: 0, cartTotal: 0 }
+        { newCartCounter: 0, newCartTotal: 0 }
       );
     return recountedCart;
   }

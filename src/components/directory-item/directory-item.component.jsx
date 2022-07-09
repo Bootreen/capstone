@@ -1,4 +1,4 @@
-import { titleUrlToggle } from '../../utils/miscellaneous.utils.js';
+import { titleUrlToggle } from '../../utils/strings/strings.utils.js';
 import {
   BackgroundImage,
   Directory,

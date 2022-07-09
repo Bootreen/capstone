@@ -2,7 +2,7 @@ import { Fragment, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ProductsContext } from '../../contexts/products.context.jsx';
 import ProductCard from '../../components/product-card/product-card.component.jsx';
-import { titleUrlToggle } from '../../utils/miscellaneous.utils.js';
+import { titleUrlToggle } from '../../utils/strings/strings.utils.js';
 import { CategoryContainer, CategoryTitle, CategoryBody } from './category.styles.jsx';
 
 const Category = ({ parent }) => {
