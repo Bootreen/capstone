@@ -1,6 +1,7 @@
 import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { CartContext } from '../../contexts/cart.context.jsx';
-import { ProductsContext } from '../../contexts/products.context.jsx';
+import { getIsShowSpiciness } from '../../store/shop/shop.selector.js';
 import Button from '../button/button.component.jsx';
 import {
   ProductCardContainer,
@@ -14,7 +15,7 @@ import {
 const ProductCard = ({ product }) => {
   const IMG_URL_PREFIX = 'https://tangelocat.com/images/';
   const IMG_EXTENSION = '.png';
-  const { isShowSpiciness } = useContext(ProductsContext);
+  const isShowSpiciness = useSelector(getIsShowSpiciness);
   const { addItemToCart } = useContext(CartContext);
   const addToCartHandler = () => addItemToCart(product);
   const { title, price, imageUrl, spiciness } = product;

@@ -1,18 +1,23 @@
-import { Fragment, useContext } from 'react';
+import { Fragment } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ProductsContext } from '../../contexts/products.context.jsx';
+import { getCategories, getProducts } from '../../store/shop/shop.selector.js';
 import ProductCard from '../../components/product-card/product-card.component.jsx';
 import { titleUrlToggle } from '../../utils/strings/strings.utils.js';
 import { CategoryContainer, CategoryTitle, CategoryBody } from './category.styles.jsx';
+import { useSelector } from 'react-redux';
 
 const Category = ({ parent }) => {
   const SPICINESS = {
     'mild': [1, 5],
     'hot': [6, 11]
   };
-  const { categories, getProductsByCategory } = useContext(ProductsContext);
+  const products = useSelector(getProducts);
+  const categories = useSelector(getCategories);
   const { path } = useParams();
   const categoryPath = parent ? '' : titleUrlToggle(path);
+
+  const getProductsByCategory = (category) => products.filter(product =>
+    product.category.toLowerCase() === category);
 
   const filters = (mode) => {
     if (mode === 'preview') return ((_, index) => index < 4)

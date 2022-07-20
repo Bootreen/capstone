@@ -1,7 +1,8 @@
 import { Fragment, useContext } from 'react';
 import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../store/user/user.selector.js';
 import { ReactComponent as TCatLogo } from '../../assets/tcat-logo.svg';
-import { UserContext } from '../../contexts/user.context.jsx';
 import { CartContext } from '../../contexts/cart.context.jsx';
 import CartIcon from '../../components/cart-icon/cart-icon.component.jsx';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component.jsx';
@@ -14,7 +15,7 @@ import {
 } from './menu-bar.styles.jsx';
 
 const MenuBar = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
   const { isCartOpen } = useContext(CartContext);
 
   return (
