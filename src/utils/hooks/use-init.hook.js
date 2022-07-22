@@ -3,10 +3,10 @@ import { useDispatch } from 'react-redux';
 import {
   createUserDocumentFromAuth,
   onAuthStateChangedListener,
-  getCategoriesAndDocuments
+  getShopDatabase
 } from '../firebase/firebase.utils.js';
 import { setCurrentUser } from '../../store/user/user.action.js';
-import { setProducts, setCategories } from '../../store/shop/shop.action.js';
+import { setShopDatabase, setIsLoaded, setIsLoading } from '../../store/shop/shop.action.js';
 
 export const useInit = () => {
   const dispatch = useDispatch();
@@ -20,17 +20,11 @@ export const useInit = () => {
   // eslint-disable-next-line
   }, []);
 
-  useEffect(() => {
-    const setCategoriesAndProducts = async () => {
-      const productsObject = await getCategoriesAndDocuments();
-      dispatch(setProducts(productsObject.products));
-      dispatch(setCategories(productsObject.products
-        .map(product => product.category.toLowerCase())
-        .reduce((filterOffDuplicates, entry) =>
-          filterOffDuplicates.includes(entry) ? filterOffDuplicates : [...filterOffDuplicates, entry], [])
-      ))
-    }
-    setCategoriesAndProducts();
+  useEffect(() => {(async () => {
+    dispatch(setIsLoading(true));
+    dispatch(setShopDatabase(await getShopDatabase()));
+    dispatch(setIsLoaded(true));
+    dispatch(setIsLoading(false))})();
   // dispatch is never going to change, therefore fire this hook only once
   // eslint-disable-next-line
   }, []);

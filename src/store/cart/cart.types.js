@@ -1,0 +1,4 @@
+export const CART_ACTIONS = {
+  OPEN_CLOSE: 'OPEN_CLOSE',
+  UPDATE: 'UPDATE'
+};

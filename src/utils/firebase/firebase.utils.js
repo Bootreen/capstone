@@ -53,22 +53,11 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
   console.log('Done');
 };
 
-export const getCategoriesAndDocuments = async () => {
+export const getShopDatabase = async () => {
   const collectionRef = collection(db, 'shop');
   const tempQuery = query(collectionRef);
   const querySnapshot = await getDocs(tempQuery);
-
-  // Single category simplified download
-  const { title, items } = querySnapshot.docs[0].data();
-  return {[title.toLowerCase()]: items};
-
-  // Multiple categories download
-  // const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-  //   const { title, items } = docSnapshot.data();
-  //   acc[title.toLowerCase()] = items;
-  //   return acc;
-  // }, {});
-  // return categoryMap;
+  return querySnapshot.docs.map(docSnapshot => docSnapshot.data());
 };
 
 export const signInWithGoogleRedirect = async () =>

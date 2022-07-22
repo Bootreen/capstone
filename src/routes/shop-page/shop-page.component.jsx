@@ -1,14 +1,24 @@
 import { Fragment } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsShowSpiciness } from '../../store/shop/shop.action.js';
-import { getIsShowSpiciness } from '../../store/shop/shop.selector.js';
-import { SpicinessToggle, ToggleLabel, ToggleCheckbox } from './shop-page.styles.jsx';
+import { toggleIsShowSpiciness } from '../../store/shop/shop.action.js';
+import {
+  selectIsLoaded,
+  selectIsLoading,
+  selectIsShowSpiciness
+} from '../../store/shop/shop.selector.js';
+import {
+  SpicinessToggle,
+  ToggleLabel,
+  ToggleCheckbox
+} from './shop-page.styles.jsx';
 
 const Shop = () => {
-  const isShowSpiciness = useSelector(getIsShowSpiciness);
+  const isShowSpiciness = useSelector(selectIsShowSpiciness);
+  const isLoading = useSelector(selectIsLoading);
+  const isLoaded = useSelector(selectIsLoaded);
   const dispatch = useDispatch();
-  const spicinessToggleHandler = () => dispatch(setIsShowSpiciness(!isShowSpiciness));
+  const spicinessToggleHandler = () => dispatch(toggleIsShowSpiciness());
 
   return (
     <Fragment>
@@ -20,7 +30,8 @@ const Shop = () => {
           onChange={spicinessToggleHandler}
         />
       </SpicinessToggle>
-      <Outlet/>
+      {isLoading && <span>Loading database...</span>}
+      {isLoaded && <Outlet/>}
     </Fragment>
   )
 };

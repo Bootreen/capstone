@@ -87,9 +87,9 @@ export const CartProvider = ({ children }) => {
     cartUpdate(addCartItem(cartItems, productToAdd));
 
   const decItemInCart = (productToDecrease) =>
-  productToDecrease.quantity === 0
-    ? null
-    : cartUpdate(decreaseCartItem(cartItems, productToDecrease));
+    productToDecrease.quantity === 0
+      ? null
+      : cartUpdate(decreaseCartItem(cartItems, productToDecrease));
 
   const removeItemFromCart = (productToRemove) =>
     cartUpdate(removeCartItem(cartItems, productToRemove));
