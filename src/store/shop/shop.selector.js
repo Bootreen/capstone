@@ -1,12 +1,26 @@
 import { createSelector } from 'reselect';
 
-export const selectIsShowSpiciness = state => state.shop.isShowSpiciness;
+const selectShopSlice = state => state.shop;
 
-export const selectIsLoaded = state => state.shop.isLoaded;
+export const selectIsShowSpiciness = createSelector(
+  [selectShopSlice],
+  shop => shop.isShowSpiciness
+);
 
-export const selectIsLoading = state => state.shop.isLoading;
+export const selectIsLoaded = createSelector(
+  [selectShopSlice],
+  shop => shop.isLoaded
+);
 
-const selectShopDatabase = state => state.shop.shopDatabase;
+export const selectIsLoading = createSelector(
+  [selectShopSlice],
+  shop => shop.isLoading
+);
+
+export const selectShopDatabase = createSelector(
+  [selectShopSlice],
+  shop => shop.shopDatabase
+);
 
 export const selectProducts = createSelector(
   [selectShopDatabase],
