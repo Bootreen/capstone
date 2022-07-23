@@ -1,5 +1,11 @@
-import { useEffect, useContext } from 'react';
-import { CartContext } from '../../contexts/cart.context.jsx';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setIsCartOpen,
+  addItemToCart,
+  decItemInCart,
+  removeItemFromCart
+} from '../../store/cart/cart.action.js';
 import Button from '../../components/button/button.component.jsx';
 import {
   CheckoutContainer,
@@ -9,20 +15,16 @@ import {
   TableHeaderRow,
   TotalRow
 } from './checkout.styles.jsx';
+import { selectCartCountAndTotal, selectCartItems } from '../../store/cart/cart.selector.js';
 
 const CheckoutPage = () => {
-  const {
-    setIsCartOpen,
-    cartItems,
-    addItemToCart,
-    decItemInCart,
-    removeItemFromCart,
-    cartTotal
-  } = useContext(CartContext);
+  const cartItems = useSelector(selectCartItems);
+  const cartTotal = useSelector(selectCartCountAndTotal).cartTotal;
 
+  const dispatch = useDispatch();
   // Autoclose cart at the first checkout page render
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => setIsCartOpen(false), []);
+  useEffect(() => {dispatch(setIsCartOpen(false))}, []);
 
   return (
     <CheckoutContainer>
@@ -35,9 +37,9 @@ const CheckoutPage = () => {
       </TableHeaderRow>
       {cartItems.map(item => {
         const { barcode, title, quantity, price, imageUrl } = item;
-        const incItemQuantityHandler = () => addItemToCart(item);
-        const decItemQuantityHandler = () => decItemInCart(item);
-        const removeItemHandler = () => removeItemFromCart(item);
+        const incItemQuantityHandler = () => dispatch(addItemToCart(item));
+        const decItemQuantityHandler = () => dispatch(decItemInCart(item));
+        const removeItemHandler = () => dispatch(removeItemFromCart(item));
         return (
         <CheckoutRow key={barcode}>
           <CheckoutImage src={imageUrl} alt={title}/>

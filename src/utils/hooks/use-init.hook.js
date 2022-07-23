@@ -22,8 +22,11 @@ export const useInit = () => {
 
   useEffect(() => {(async () => {
     dispatch(setIsLoading(true));
-    dispatch(setShopDatabase(await getShopDatabase()));
-    dispatch(setIsLoaded(true));
+    const shopDatabase = await getShopDatabase();
+    if (shopDatabase) {
+      dispatch(setShopDatabase(shopDatabase));
+      dispatch(setIsLoaded(true));
+    }
     dispatch(setIsLoading(false))})();
   // dispatch is never going to change, therefore fire this hook only once
   // eslint-disable-next-line

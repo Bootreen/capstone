@@ -31,6 +31,7 @@ const Shop = () => {
         />
       </SpicinessToggle>
       {isLoading && <span>Loading database...</span>}
+      {!isLoading && !isLoaded && <span>Database loading error.</span>}
       {isLoaded && <Outlet/>}
     </Fragment>
   )
