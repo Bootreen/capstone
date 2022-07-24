@@ -7,9 +7,9 @@ export const selectIsShowSpiciness = createSelector(
   shop => shop.isShowSpiciness
 );
 
-export const selectIsLoaded = createSelector(
+export const selectError = createSelector(
   [selectShopSlice],
-  shop => shop.isLoaded
+  shop => shop.error
 );
 
 export const selectIsLoading = createSelector(

@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleIsShowSpiciness } from '../../store/shop/shop.action.js';
 import {
-  selectIsLoaded,
+  selectError,
   selectIsLoading,
   selectIsShowSpiciness
 } from '../../store/shop/shop.selector.js';
@@ -12,11 +12,12 @@ import {
   ToggleLabel,
   ToggleCheckbox
 } from './shop-page.styles.jsx';
+import Spinner from '../../components/spinner/spinner.component.jsx';
 
 const Shop = () => {
   const isShowSpiciness = useSelector(selectIsShowSpiciness);
+  const error = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
-  const isLoaded = useSelector(selectIsLoaded);
   const dispatch = useDispatch();
   const spicinessToggleHandler = () => dispatch(toggleIsShowSpiciness());
 
@@ -30,9 +31,9 @@ const Shop = () => {
           onChange={spicinessToggleHandler}
         />
       </SpicinessToggle>
-      {isLoading && <span>Loading database...</span>}
-      {!isLoading && !isLoaded && <span>Database loading error.</span>}
-      {isLoaded && <Outlet/>}
+      {isLoading && <Spinner/>}
+      {error && <span>Error loading database: {error.message}</span>}
+      {!isLoading && !error && <Outlet/>}
     </Fragment>
   )
 };

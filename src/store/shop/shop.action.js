@@ -1,14 +1,26 @@
 import { SHOP_ACTIONS } from './shop.types.js';
 import { createAction } from '../../utils/reducer/reducer.utils.js';
-
-export const setShopDatabase = shopDatabase =>
-  createAction(SHOP_ACTIONS.SET_SHOP_DB, shopDatabase);
+import { getShopDatabase } from '../../utils/firebase/firebase.utils.js';
 
 export const toggleIsShowSpiciness = () =>
   createAction(SHOP_ACTIONS.TOGGLE_SHOW_SPICINESS);
 
-export const setIsLoaded = booleanValue =>
-createAction(SHOP_ACTIONS.SET_IS_LOADED, booleanValue);
+export const fetchDatabaseStart = () =>
+  createAction(SHOP_ACTIONS.FETCH_DATABASE_START);
 
-export const setIsLoading = booleanValue =>
-createAction(SHOP_ACTIONS.SET_IS_LOADING, booleanValue);
+export const fetchDatabaseFailed = error =>
+  createAction(SHOP_ACTIONS.FETCH_DATABASE_FAILED, error);
+
+export const fetchDatabaseSucsess = shopDatabase =>
+  createAction(SHOP_ACTIONS.FETCH_DATABASE_SUCCESS, shopDatabase);
+
+export const fetchDatabaseAsync = () =>
+  async dispatch => {
+    dispatch(fetchDatabaseStart());
+    try {
+      const shopDatabase = await getShopDatabase();
+      dispatch(fetchDatabaseSucsess(shopDatabase));
+    } catch (error) {
+      dispatch(fetchDatabaseFailed(error))
+    }
+};

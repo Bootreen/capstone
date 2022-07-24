@@ -54,14 +54,10 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
 };
 
 export const getShopDatabase = async () => {
-  try {
-    const collectionRef = collection(db, 'shop');
-    const tempQuery = query(collectionRef);
-    const querySnapshot = await getDocs(tempQuery);
-    return querySnapshot.docs.map(docSnapshot => docSnapshot.data());
-  } catch {
-    return false
-  }
+  const collectionRef = collection(db, 'shop');
+  const tempQuery = query(collectionRef);
+  const querySnapshot = await getDocs(tempQuery);
+  return querySnapshot.docs.map(docSnapshot => docSnapshot.data());
 };
 
 export const signInWithGoogleRedirect = async () =>
