@@ -5,6 +5,7 @@ import { toggleIsShowSpiciness } from '../../store/shop/shop.action.js';
 import {
   selectError,
   selectIsLoading,
+  selectIsLoaded,
   selectIsShowSpiciness
 } from '../../store/shop/shop.selector.js';
 import {
@@ -18,6 +19,7 @@ const Shop = () => {
   const isShowSpiciness = useSelector(selectIsShowSpiciness);
   const error = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
+  const isLoaded = useSelector(selectIsLoaded);
   const dispatch = useDispatch();
   const spicinessToggleHandler = () => dispatch(toggleIsShowSpiciness());
 
@@ -32,8 +34,8 @@ const Shop = () => {
         />
       </SpicinessToggle>
       {isLoading && <Spinner/>}
+      {isLoaded && <Outlet/>}
       {error && <span>Error loading database: {error.message}</span>}
-      {!isLoading && !error && <Outlet/>}
     </Fragment>
   )
 };

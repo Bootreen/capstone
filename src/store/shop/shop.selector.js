@@ -17,6 +17,11 @@ export const selectIsLoading = createSelector(
   shop => shop.isLoading
 );
 
+export const selectIsLoaded = createSelector(
+  [selectShopSlice],
+  shop => shop.isLoaded
+);
+
 export const selectShopDatabase = createSelector(
   [selectShopSlice],
   shop => shop.shopDatabase
