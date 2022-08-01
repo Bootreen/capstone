@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import FormInput from '../form-input/form-input.component.jsx';
 import Button from '../button/button.component.jsx';
-import { getRedirectResult } from "firebase/auth";
-import {
-  auth,
-  signInWithGoogleRedirect,
-  signInDefault
-} from '../../utils/firebase/firebase.utils.js';
+import { getRedirectResult } from 'firebase/auth';
+import { auth } from '../../utils/firebase/firebase.utils.js';
+import { signInGoogleStart, signInEmailStart } from '../../store/user/user.action.js';
 import { ButtonsContainer, SignInContainer } from './sign-in-form.styles.jsx';
 
 const defaultFormFields = {
@@ -15,17 +13,22 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
+  const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
   const resetFormFields = () => setFormFields(defaultFormFields);
+
+  const signInWithGoogleRedirectHandler = () => {
+    dispatch(signInGoogleStart());
+  };
 
   useEffect(() => (async () => await getRedirectResult(auth)), []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await signInDefault(email, password);
+      dispatch(signInEmailStart (email, password));
       resetFormFields();
     } catch(error) {
       switch (error.code) {
@@ -72,7 +75,7 @@ const SignInForm = () => {
           <Button
             type='button'
             buttonVariation='google'
-            onClick={signInWithGoogleRedirect}
+            onClick={signInWithGoogleRedirectHandler}
           >
             Google Sign In
           </Button>

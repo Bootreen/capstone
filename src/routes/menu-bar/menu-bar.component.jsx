@@ -1,11 +1,11 @@
 import { Fragment } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { signOutStart } from '../../store/user/user.action.js';
 import { selectCurrentUser } from '../../store/user/user.selector.js';
 import { ReactComponent as TCatLogo } from '../../assets/tcat-logo.svg';
 import CartIcon from '../../components/cart-icon/cart-icon.component.jsx';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component.jsx';
-import { signOutUser } from '../../utils/firebase/firebase.utils.js';
 import {
   MenuBarContainer,
   LogoContainer,
@@ -15,8 +15,11 @@ import {
 import { selectIsCartOpen } from '../../store/cart/cart.selector.js';
 
 const MenuBar = () => {
+  const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
+
+  const signOutUser = () => dispatch(signOutStart());
 
   return (
     <Fragment>
