@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addItemToCart } from '../../store/cart/cart.action.js';
 import { selectIsShowSpiciness } from '../../store/shop/shop.selector.js';
-import Button from '../button/button.component.jsx';
+import Button, { BUTTONS } from '../button/button.component.jsx';
 import {
   ProductCardContainer,
   ProductFooter,
@@ -29,7 +29,13 @@ const ProductCard = ({ product }) => {
         <ProductTitle>{title}</ProductTitle>
         <ProductPrice>₴{price}</ProductPrice>
       </ProductFooter>
-      <Button type='button' buttonVariation='inverted' onClick={addToCartHandler}>Add to cart</Button>
+      <Button
+        type='button'
+        buttonVariation={BUTTONS.inverted}
+        onClick={addToCartHandler}
+      >
+        Add to cart
+      </Button>
     </ProductCardContainer>
   )
 };

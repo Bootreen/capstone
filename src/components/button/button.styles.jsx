@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { SpinnerContainer } from '../spinner/spinner.styles.jsx';
 
 export const BaseButton = styled.button`
   min-width: 165px;
@@ -17,6 +18,7 @@ export const BaseButton = styled.button`
   cursor: pointer;
   display: flex;
   justify-content: center;
+  align-items: center;
 
   &:hover {
     background-color: white;
@@ -48,7 +50,6 @@ export const InvertedButton = styled(BaseButton)`
 `;
 
 export const BorderlessButton = styled(BaseButton)`
-  width: 0%;
   min-width: 10px;
   padding: 0 20px;
   margin: 0 auto;
@@ -58,9 +59,17 @@ export const BorderlessButton = styled(BaseButton)`
   font-weight: bold;
   font-size: inherit;
   text-transform: none;
-  align-items: center;
 
   &:hover {
     border: none;
   }
+`;
+
+export const PaymentButton = styled(InvertedButton)`
+  margin: 30px auto 0;
+`;
+
+export const ButtonSpinner = styled(SpinnerContainer)`
+  width: 30px;
+  height: 30px;
 `;

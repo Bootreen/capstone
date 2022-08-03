@@ -6,7 +6,14 @@ import {
   decItemInCart,
   removeItemFromCart
 } from '../../store/cart/cart.action.js';
-import Button from '../../components/button/button.component.jsx';
+import {
+  selectCartCountAndTotal,
+  selectCartItems
+} from '../../store/cart/cart.selector.js';
+
+import Button, { BUTTONS } from '../../components/button/button.component.jsx';
+import PaymentForm from '../../components/payment-form/payment-form.component.jsx';
+
 import {
   CheckoutContainer,
   CheckoutImage,
@@ -15,7 +22,6 @@ import {
   TableHeaderRow,
   TotalRow
 } from './checkout.styles.jsx';
-import { selectCartCountAndTotal, selectCartItems } from '../../store/cart/cart.selector.js';
 
 const CheckoutPage = () => {
   const cartItems = useSelector(selectCartItems);
@@ -47,7 +53,7 @@ const CheckoutPage = () => {
           <QuantityContainer>
             <Button
               type='button'
-              buttonVariation='borderless'
+              buttonVariation={BUTTONS.borderless}
               onClick={decItemQuantityHandler}
             >
              ◄
@@ -55,7 +61,7 @@ const CheckoutPage = () => {
               {quantity}
             <Button
               type='button'
-              buttonVariation='borderless'
+              buttonVariation={BUTTONS.borderless}
               onClick={incItemQuantityHandler}
             >
               ►
@@ -64,7 +70,7 @@ const CheckoutPage = () => {
           <div>{price}</div>
           <Button
             type='button'
-            buttonVariation='borderless'
+            buttonVariation={BUTTONS.borderless}
             onClick={removeItemHandler}
           >
             x
@@ -75,6 +81,7 @@ const CheckoutPage = () => {
         <h4>Cart Total:</h4>
         <h4>{cartTotal}</h4>
       </TotalRow>
+      <PaymentForm />
     </CheckoutContainer>
   )
 };

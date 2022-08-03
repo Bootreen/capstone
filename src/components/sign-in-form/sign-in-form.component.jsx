@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import FormInput from '../form-input/form-input.component.jsx';
-import Button from '../button/button.component.jsx';
+import Button, { BUTTONS } from '../button/button.component.jsx';
 import { getRedirectResult } from 'firebase/auth';
 import { auth } from '../../utils/firebase/firebase.utils.js';
 import { signInGoogleStart, signInEmailStart } from '../../store/user/user.action.js';
@@ -19,9 +19,7 @@ const SignInForm = () => {
 
   const resetFormFields = () => setFormFields(defaultFormFields);
 
-  const signInWithGoogleRedirectHandler = () => {
-    dispatch(signInGoogleStart());
-  };
+  const signInWithGoogleRedirectHandler = () => dispatch(signInGoogleStart());
 
   useEffect(() => (async () => await getRedirectResult(auth)), []);
 
@@ -74,7 +72,7 @@ const SignInForm = () => {
           <Button type='submit'>Sign In</Button>
           <Button
             type='button'
-            buttonVariation='google'
+            buttonVariation={BUTTONS.google}
             onClick={signInWithGoogleRedirectHandler}
           >
             Google Sign In

@@ -2,16 +2,35 @@ import {
   BaseButton,
   InvertedButton,
   BorderlessButton,
-  GoogleSignInButton
+  GoogleSignInButton,
+  PaymentButton,
+  ButtonSpinner
 } from './button.styles.jsx';
 
-const Button = ({ children, buttonVariation, ...otherProps }) => {
-  switch (buttonVariation) {
-    case 'inverted': return <InvertedButton {...otherProps}>{children}</InvertedButton>;
-    case 'borderless': return <BorderlessButton {...otherProps}>{children}</BorderlessButton>;
-    case 'google': return <GoogleSignInButton {...otherProps}>{children}</GoogleSignInButton>;
-    default: return <BaseButton {...otherProps}>{children}</BaseButton>
-  }
+export const BUTTONS = {
+  base: 'base',
+  google: 'google',
+  inverted: 'inverted',
+  borderless: 'borderless',
+  payment: 'payment'
+};
+
+const selectButtonVariation = (buttonVariation = BUTTONS.base) =>
+  ({
+    [BUTTONS.base]: BaseButton,
+    [BUTTONS.inverted]: InvertedButton,
+    [BUTTONS.google]: GoogleSignInButton,
+    [BUTTONS.borderless]: BorderlessButton,
+    [BUTTONS.payment]: PaymentButton
+  }[buttonVariation])
+
+const Button = ({ children, buttonVariation, isLoading, ...otherProps }) => {
+  const CurrentButton = selectButtonVariation(buttonVariation);
+  return (
+    <CurrentButton disabled={isLoading} {...otherProps}>
+      {isLoading ? <ButtonSpinner/> : children}
+    </CurrentButton>
+  )
 };
 
 export default Button;
