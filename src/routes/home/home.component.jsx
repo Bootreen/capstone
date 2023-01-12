@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import Directories from '../../components/directories/directories.component.jsx';
+import Directories from '../../components/directories/directories.component';
 
 const Home = () => {
 

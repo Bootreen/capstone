@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { checkUserSession } from '../../store/user/user.action.js';
-import { fetchDatabaseStart } from '../../store/shop/shop.action.js';
+import { checkUserSession } from '../../store/user/user.action';
+import { fetchDatabaseStart } from '../../store/shop/shop.action';
 
 export const useInit = () => {
   const dispatch = useDispatch();

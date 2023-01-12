@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectCartCountAndTotal, selectCartItems } from '../../store/cart/cart.selector.js';
-import Button from '../button/button.component.jsx';
-import CartItem from '../cart-item/cart-item.component.jsx';
-import { CartList, CartItems, EmptyMessage } from './cart-dropdown.styles.jsx';
+import { selectCartCountAndTotal, selectCartItems } from '../../store/cart/cart.selector';
+import Button from '../button/button.component';
+import CartItem from '../cart-item/cart-item.component';
+import { CartList, CartItems, EmptyMessage } from './cart-dropdown.styles';
 
 const CartDropdown = () => {
   const cartItems = useSelector(selectCartItems);

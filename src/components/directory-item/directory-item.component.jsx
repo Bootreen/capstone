@@ -1,9 +1,9 @@
-import { titleUrlToggle } from '../../utils/strings/strings.utils.js';
+import { titleUrlToggle } from '../../utils/strings/strings.utils';
 import {
   BackgroundImage,
   Directory,
   DirectoryLink
-} from './directory-item.styles.jsx';
+} from './directory-item.styles';
 
 const DirectoryItem = ({ category }) => {
   const { title, imageUrl } = category;

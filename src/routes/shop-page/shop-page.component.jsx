@@ -1,19 +1,19 @@
 import { Fragment } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleIsShowSpiciness } from '../../store/shop/shop.action.js';
+import { toggleIsShowSpiciness } from '../../store/shop/shop.action';
 import {
   selectError,
   selectIsLoading,
   selectIsLoaded,
   selectIsShowSpiciness
-} from '../../store/shop/shop.selector.js';
+} from '../../store/shop/shop.selector';
 import {
   SpicinessToggle,
   ToggleLabel,
   ToggleCheckbox
-} from './shop-page.styles.jsx';
-import Spinner from '../../components/spinner/spinner.component.jsx';
+} from './shop-page.styles';
+import Spinner from '../../components/spinner/spinner.component';
 
 const Shop = () => {
   const isShowSpiciness = useSelector(selectIsShowSpiciness);

@@ -1,12 +1,12 @@
 import { takeLatest, all, call, put } from 'redux-saga/effects';
-import { getShopDatabase } from '../../utils/firebase/firebase.utils.js';
-import { fetchDatabaseFailed, fetchDatabaseSucsess} from './shop.action.js';
-import { SHOP_ACTIONS } from './shop.types.js';
+import { getShopDatabase } from '../../utils/firebase/firebase.utils';
+import { fetchDatabaseFailed, fetchDatabaseSuccess} from './shop.action';
+import { SHOP_ACTIONS } from './shop.types';
 
 export function* fetchDatabaseAsync() {
   try {
-    const shopDatabase = yield call(getShopDatabase);
-    yield put(fetchDatabaseSucsess(shopDatabase));
+    const [shopDatabase] = yield call(getShopDatabase);
+    yield put(fetchDatabaseSuccess(shopDatabase));
   } catch (error) {
     yield put(fetchDatabaseFailed(error));
   }

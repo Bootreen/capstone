@@ -1,18 +1,18 @@
 import { Fragment } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { signOutStart } from '../../store/user/user.action.js';
-import { selectCurrentUser } from '../../store/user/user.selector.js';
+import { signOutStart } from '../../store/user/user.action';
+import { selectCurrentUser } from '../../store/user/user.selector';
 import { ReactComponent as TCatLogo } from '../../assets/tcat-logo.svg';
-import CartIcon from '../../components/cart-icon/cart-icon.component.jsx';
-import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component.jsx';
+import CartIcon from '../../components/cart-icon/cart-icon.component';
+import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
 import {
   MenuBarContainer,
   LogoContainer,
   NavLinks,
   NavLink
-} from './menu-bar.styles.jsx';
-import { selectIsCartOpen } from '../../store/cart/cart.selector.js';
+} from './menu-bar.styles';
+import { selectIsCartOpen } from '../../store/cart/cart.selector';
 
 const MenuBar = () => {
   const dispatch = useDispatch();

@@ -3,7 +3,7 @@ import {
   CartItemImage,
   CartItemSpan,
   ItemDetails
-} from './cart-item.styles.jsx';
+} from './cart-item.styles';
 
 const CartItem = ({ cartItem }) => {
   const { imageUrl, price, title, quantity } = cartItem;

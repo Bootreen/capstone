@@ -1,9 +1,9 @@
 import { Fragment } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { selectCategories, selectProducts } from '../../store/shop/shop.selector.js';
-import ProductCard from '../../components/product-card/product-card.component.jsx';
-import { titleUrlToggle } from '../../utils/strings/strings.utils.js';
-import { CategoryContainer, CategoryTitle, CategoryBody } from './category.styles.jsx';
+import { selectCategories, selectProducts } from '../../store/shop/shop.selector';
+import ProductCard from '../../components/product-card/product-card.component';
+import { titleUrlToggle } from '../../utils/strings/strings.utils';
+import { CategoryContainer, CategoryTitle, CategoryBody } from './category.styles';
 import { useSelector } from 'react-redux';
 
 const Category = ({ parent }) => {

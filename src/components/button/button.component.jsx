@@ -5,7 +5,7 @@ import {
   GoogleSignInButton,
   PaymentButton,
   ButtonSpinner
-} from './button.styles.jsx';
+} from './button.styles';
 
 export const BUTTONS = {
   base: 'base',

@@ -5,14 +5,14 @@ import {
   addItemToCart,
   decItemInCart,
   removeItemFromCart
-} from '../../store/cart/cart.action.js';
+} from '../../store/cart/cart.action';
 import {
   selectCartCountAndTotal,
   selectCartItems
-} from '../../store/cart/cart.selector.js';
+} from '../../store/cart/cart.selector';
 
-import Button, { BUTTONS } from '../../components/button/button.component.jsx';
-import PaymentForm from '../../components/payment-form/payment-form.component.jsx';
+import Button, { BUTTONS } from '../../components/button/button.component';
+import PaymentForm from '../../components/payment-form/payment-form.component';
 
 import {
   CheckoutContainer,
@@ -21,7 +21,7 @@ import {
   QuantityContainer,
   TableHeaderRow,
   TotalRow
-} from './checkout.styles.jsx';
+} from './checkout.styles';
 
 const CheckoutPage = () => {
   const cartItems = useSelector(selectCartItems);

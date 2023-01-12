@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { selectCartCountAndTotal } from '../../store/cart/cart.selector.js';
 import { selectCurrentUser } from '../../store/user/user.selector.js';
-import Button, { BUTTONS } from '../button/button.component.jsx';
-import { PaymentFormContainer, FormContainer } from './payment-form.styles.jsx';
+import Button, { BUTTONS } from '../button/button.component';
+import { PaymentFormContainer, FormContainer } from './payment-form.styles';
 
 const PaymentForm = () => {
   const stripe = useStripe();

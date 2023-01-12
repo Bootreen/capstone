@@ -8,7 +8,7 @@ exports.handler = async (event) => {
 
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
-      currency: 'usd',
+      currency: 'uah',
       payment_method_types: ['card']
     });
 

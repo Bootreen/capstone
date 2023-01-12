@@ -1,4 +1,4 @@
-import { USER_ACTIONS } from './user.types.js';
+import { USER_ACTIONS } from './user.types';
 import { createAction } from '../../utils/reducer/reducer.utils';
 
 export const checkUserSession = () => createAction(USER_ACTIONS.CHECK_USER_SESSION);

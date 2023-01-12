@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addItemToCart } from '../../store/cart/cart.action.js';
-import { selectIsShowSpiciness } from '../../store/shop/shop.selector.js';
-import Button, { BUTTONS } from '../button/button.component.jsx';
+import { addItemToCart } from '../../store/cart/cart.action';
+import { selectIsShowSpiciness } from '../../store/shop/shop.selector';
+import Button, { BUTTONS } from '../button/button.component';
 import {
   ProductCardContainer,
   ProductFooter,
@@ -9,7 +9,7 @@ import {
   ProductPrice,
   ProductTitle,
   SpicinessLabel
-} from './product-card.styles.jsx';
+} from './product-card.styles';
 
 const ProductCard = ({ product }) => {
   const IMG_URL_PREFIX = 'https://tangelocat.com/images/';
